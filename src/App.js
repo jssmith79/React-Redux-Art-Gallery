@@ -10,11 +10,12 @@ import {
 } from './features/dataSlice';
 
 
-const mapStateToProps = state => ({ artId: state.data.artID });
+const mapStateToProps = state => {
+  return state.data;
+};
 
 
-
-function App(artId) {
+function App({artId, isLoggedIn}) {
   const dispatch = useDispatch();
   const currentState = useSelector((state) => state.data);
   useEffect(() => {
@@ -30,7 +31,7 @@ function App(artId) {
 
   }
   return (
-    <div className='App'>
+    <div className='App' style={ { 'backgroundColor': isLoggedIn ? 'red' : 'yellow'}}>
       <div className='button-container'>
         <button onClick={
           () => dispatch(fetchData())
